@@ -17,3 +17,8 @@
 #     price: Faker::Commerce.price(range: 10.0..100.0)
 #   )
 # end
+
+Category.create(name: 'Camping')
+Category.create(name: 'Hiking')
+Category.create(name: 'Fishing')
+Category.create(name: 'Skiing')

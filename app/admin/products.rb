@@ -9,7 +9,7 @@ class Product < ApplicationRecord
 end
 
 ActiveAdmin.register Product do
-  permit_params :name, :description, :price
+  permit_params :name, :description, :price, :image, category_ids: []
 
   index do
     selectable_column
@@ -17,6 +17,16 @@ ActiveAdmin.register Product do
     column :name
     column :description
     column :price
+    column "Image" do |product|
+      if product.image.attached?
+        image_tag(url_for(product.image), height: '100')
+      else
+        content_tag(:span, "No Image")
+      end
+    end
+    column "Categories" do |product|
+      product.category_names
+    end
     actions
   end
 
@@ -28,6 +38,8 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :description
       f.input :price
+      f.input :image, as: :file
+      f.input :categories, as: :check_boxes, collection: Category.all
     end
     f.actions
   end
