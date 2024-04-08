@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  get 'pages/home'
-  get 'pages/about'
-  get 'pages/contact'
-  root 'pages#home'
+  # Define routes for about and contact pages
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
 
+  # Route the root URL to the index action of PagesController
+  root 'pages#index'
+
+  # Define Devise routes for admin users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

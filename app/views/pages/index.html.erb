@@ -1,0 +1,29 @@
+<!-- app/views/pages/index.html.erb -->
+
+<h1>All Products</h1>
+
+<%= form_tag({ controller: "pages", action: "index" }, method: "get", id: "category-filter-form") do %>
+  <%= select_tag(:category_id, options_for_select(@categories.map { |c| [c.name, c.id] }), { prompt: "Select a Category" }) %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<div id="products-list">
+  <% @products.each do |product| %>
+    <div>
+      <% if product.image.attached? %>
+        <%= image_tag rails_blob_path(product.image, only_path: true), height: '100' %>
+      <% end %>
+      <h2><%= product.name %></h2>
+      <p><%= product.description %></p>
+      <p>Price: <%= number_to_currency(product.price) %></p>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#category-filter-form').change(function() {
+      this.submit();
+    });
+  });
+</script>

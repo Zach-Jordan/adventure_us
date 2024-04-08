@@ -1,0 +1,10 @@
+<% products.each do |product| %>
+  <div>
+    <% if product.image.attached? %>
+      <%= image_tag rails_blob_path(product.image, only_path: true), height: '100' %>
+    <% end %>
+    <h2><%= product.name %></h2>
+    <p><%= product.description %></p>
+    <p>Price: <%= number_to_currency(product.price) %></p>
+  </div>
+<% end %>
