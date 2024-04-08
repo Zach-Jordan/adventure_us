@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # Route the root URL to the index action of PagesController
   root 'pages#index'
+  get 'products/:id', to: 'pages#show_product', as: 'product'
 
   # Define Devise routes for admin users
   devise_for :admin_users, ActiveAdmin::Devise.config

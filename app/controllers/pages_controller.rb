@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     end
     respond_to do |format|
       format.html { render :index }
-      format.js # This will render index.js.erb
+      format.js
     end
   end
 
@@ -19,5 +19,13 @@ class PagesController < ApplicationController
   def contact
     @contact_page = ContactPage.first
   end
+
+  def show_product
+    @product = Product.find_by(id: params[:id])
+    if @product.nil?
+      redirect_to root_path, alert: "Product not found"
+    end
+  end
+
 end
 
