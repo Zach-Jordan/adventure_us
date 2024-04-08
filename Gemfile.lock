@@ -306,6 +306,7 @@ DEPENDENCIES
   devise
   error_highlight (>= 0.4.0)
   faker
+  formtastic
   importmap-rails
   jbuilder
   puma (>= 5.0)

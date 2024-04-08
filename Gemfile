@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 gem 'activeadmin'
+gem 'formtastic'
 gem 'devise'
 gem 'sassc'
 gem 'faker'
