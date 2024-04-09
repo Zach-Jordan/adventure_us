@@ -46,5 +46,29 @@ end
     redirect_to root_path, notice: "Product added to cart"
   end
 
+  def update_cart
+  product_id = params[:product_id].to_i
+  new_quantity = params[:quantity].to_i
+
+  session[:cart] ||= []
+
+  if new_quantity > 0
+    session[:cart].delete(product_id)  # Remove any existing entry for this product
+    new_quantity.times { session[:cart] << product_id }  # Add the product to the session with the new quantity
+  else
+    session[:cart].delete(product_id)  # Remove the product from the session if the quantity is 0
+  end
+
+  redirect_to cart_path
+end
+
+
+  # Action to remove an item from the cart
+  def remove_from_cart
+    product_id = params[:product_id].to_i
+    session[:cart].delete(product_id)
+    redirect_to cart_path
+  end
+
 end
 

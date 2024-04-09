@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'cart', to: 'pages#cart'
   post 'add_to_cart', to: 'pages#add_to_cart'
+  post 'update_cart', to: 'pages#update_cart'
+  post 'remove_from_cart', to: 'pages#remove_from_cart'
   # Define Devise routes for admin users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -1,7 +1,32 @@
 <h1>Shopping Cart</h1>
-<ul>
-  <% @cart_products.each do |product| %>
-    <li><%= product.name %> - <%= number_to_currency(product.price) %></li>
-  <% end %>
-</ul>
-
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_products.group_by(&:id).each do |product_id, products| %>
+      <% product = products.first %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= number_to_currency(product.price) %></td>
+        <td>
+          <%= form_tag update_cart_path, method: :post do %>
+            <%= hidden_field_tag 'product_id', product_id %>
+            <%= text_field_tag 'quantity', products.size, min: 1 %>
+            <%= submit_tag 'Update' %>
+          <% end %>
+        </td>
+        <td><%= number_to_currency(product.price * products.size) %></td>
+        <td>
+          <%= button_to 'Remove', remove_from_cart_path(product_id: product_id), method: :post %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
