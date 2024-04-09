@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'products/:id', to: 'pages#show_product', as: 'product'
 
+  get 'cart', to: 'pages#cart'
+  post 'add_to_cart', to: 'pages#add_to_cart'
   # Define Devise routes for admin users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
