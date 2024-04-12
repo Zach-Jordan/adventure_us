@@ -20,7 +20,6 @@
       </ul>
       <button onclick="location.href='<%= cart_path %>';">Cart</button>
       <% if user_signed_in? %>
-        <%= link_to "Edit Address", edit_user_address_path(current_user) %>
         <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to 'Login', new_user_session_path %>
