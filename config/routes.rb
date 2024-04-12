@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # Route the root URL to the index action of PagesController
   root 'pages#index'
+
   get 'products/:id', to: 'pages#show_product', as: 'product'
 
   get 'cart', to: 'pages#cart'

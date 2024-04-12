@@ -10,6 +10,7 @@ class PagesController < ApplicationController
     end
     respond_to do |format|
       format.html { render :index }
+
       format.js # This will render index.js.erb
     end
   end

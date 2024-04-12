@@ -9,13 +9,21 @@
 <div id="products-list">
   <% @products.each do |product| %>
     <div>
+      <h2><%= link_to product.name, product %></h2>
       <% if product.image.attached? %>
         <%= image_tag rails_blob_path(product.image, only_path: true), height: '100' %>
       <% end %>
-      <h2><%= link_to product.name, product %></h2>
       <p><%= product.description %></p>
       <p>Price: <%= number_to_currency(product.price) %></p>
       <%= button_to "Add to Cart", add_to_cart_path(product_id: product.id), method: :post %>
     </div>
   <% end %>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('#category-filter-form').change(function() {
+      this.submit();
+    });
+  });
+</script>
