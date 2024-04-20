@@ -1,12 +1,21 @@
 class OrdersController < ApplicationController
+ before_action :authenticate_user!
+
+  def index
+    @orders = current_user.orders
+  end
+
   def new
     @order = Order.new
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = current_user.orders.build(order_params)
 
     if @order.save
+      session[:cart].each do |product_id, quantity|
+        @order.order_items.create(product_id: product_id, quantity: quantity)
+      end
       redirect_to confirm_order_path(@order)
     else
       render :new
@@ -23,8 +32,19 @@ class OrdersController < ApplicationController
     @tax_amount = @subtotal * @tax_rate
     @total = @subtotal + @tax_amount
 
-    # Assuming the order is confirmed successfully, redirect to thank_you action
-    redirect_to thank_you_order_path
+    # Update order attributes
+    @order.subtotal = @subtotal
+    @order.tax_amount = @tax_amount
+    @order.total = @total
+
+    # Save the order
+    if @order.save
+
+      redirect_to thank_you_order_path
+    else
+      # Handle error if order fails to save
+      render :confirm
+    end
   else
     # Handle GET request to show confirmation page
     @order = Order.find(params[:id])
@@ -38,7 +58,7 @@ class OrdersController < ApplicationController
 end
 
   def thank_you
-    # Display thank you message
+    session[:cart] = []
   end
 
   private

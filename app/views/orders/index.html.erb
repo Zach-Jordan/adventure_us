@@ -1,0 +1,28 @@
+<h1>My Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Products</th>
+      <th>Taxes</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.to_date %></td>
+        <td>
+          <ul>
+            <% order.products.each do |product| %>
+              <li><%= product.name %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td><%= number_to_currency(order.tax_amount) %></td>
+        <td><%= number_to_currency(order.total) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
