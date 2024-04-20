@@ -24,10 +24,14 @@ ActiveAdmin.register User do
     panel "Orders" do
       table_for user.orders do
         column :id
-        column :created_at
+        column("Products") do |order|
+          product_counts = order.products.group_by(&:name).transform_values(&:count)
+          product_counts.map { |product_name, count| "#{product_name} x#{count}" }.join(', ')
+        end
         column("Subtotal") { |order| number_to_currency(order.subtotal, precision: 2) }
         column("Tax Amount") { |order| number_to_currency(order.tax_amount, precision: 2) }
         column("Total") { |order| number_to_currency(order.total, precision: 2) }
+        column("Created At") { |order| order.created_at.strftime('%B %d, %Y %H:%M') }
       end
     end
   end
