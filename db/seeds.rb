@@ -22,3 +22,38 @@
 # Category.create(name: 'Hiking')
 # Category.create(name: 'Fishing')
 # Category.create(name: 'Skiing')
+
+
+# # Define your categories with corresponding placeholder images
+# category_images = {
+#   'Camping' => 'camping_placeholder.jpg',
+#   'Hiking' => 'hiking_placeholder.jpg',
+#   'Fishing' => 'fishing_placeholder.jpg',
+#   'Skiing' => 'skiing_placeholder.jpg'
+# }
+
+# # Seed products
+# 100.times do |i|
+#   # Randomly select a category
+#   category_name = ['Camping', 'Hiking', 'Fishing', 'Skiing'].sample
+
+#   # Find or create the category
+#   category_record = Category.find_or_create_by!(name: category_name)
+
+#   # Generate a unique product name
+#   product_name = Faker::Commerce.product_name
+
+#   # Create a product associated with the category
+#   product = Product.create!(
+#     name: product_name,
+#     description: Faker::Lorem.paragraph(sentence_count: 3),
+#     price: Faker::Commerce.price(range: 10.0..100.0)
+#   )
+
+#   # Attach a placeholder image based on the category
+#   placeholder_image = category_images[category_name]
+#   product.image.attach(io: File.open("app/assets/images/placeholders/#{placeholder_image}"), filename: placeholder_image)
+
+#   # Associate the product with the category
+#   category_record.products << product
+# end
