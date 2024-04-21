@@ -6,6 +6,9 @@ gem 'formtastic'
 gem 'devise'
 gem 'sassc'
 gem 'faker'
+gem 'kaminari'
+
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
