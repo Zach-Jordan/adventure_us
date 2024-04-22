@@ -1,0 +1,252 @@
+@import "variables";
+
+// Global styles
+body {
+  font-family: $font-family;
+  margin: 0;
+  padding: 0;
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+// Header styles
+header {
+  background-color: $primary-color;
+  color: white;
+  padding: $spacing-unit 0;
+  font-size: $font-size-base;
+  font-weight: $font-weight;
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  // Navigation styles
+  nav {
+    padding: $spacing-unit 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .header-nav-list {
+      padding-left: 25px;
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          display: inline;
+          padding-right: 10px;
+
+          a {
+            color: white;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+    .header-nav-user-items {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-right: 25px;
+
+      button,
+      a {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        font-family: $font-family;
+      }
+
+      button {
+        padding: 0;
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        font-size: $font-size-base;
+        font-weight: normal;
+        cursor: pointer;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: $font-size-base;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+// Index Styles
+
+// Search form styles
+.search-form {
+  text-align: center; // Center align the form elements
+  margin-bottom: 20px; // Add some margin below the form
+
+  select,
+  input[type="text"],
+  input[type="submit"] {
+    margin: 5px; // Add some margin to each form element
+    padding: 10px 15px;
+    border-radius: 20px; // Apply border-radius to make them round
+    border: 1px solid $primary-color; // Add a border to each form element
+    font-size: 16px; // Set the font size
+  }
+
+  input[type="submit"] {
+    background-color: $primary-color; // Set background color for the submit button
+    color: white; // Set text color for the submit button
+    cursor: pointer; // Set cursor to pointer for the submit button
+  }
+}
+
+// Product styles
+#products-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#products-list > div {
+  width: 350px;
+  height: 350px;
+  margin: 10px;
+  background-color: $secondary-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#products-list h2 {
+  font-size: $font-size-lg;
+}
+
+#products-list h2 a {
+  color: $text-color;
+  text-decoration: none;
+}
+
+#products-list image {
+  height: 100px;
+}
+
+#products-list button {
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 20px;
+  color: white;
+  background-color: $primary-color;
+  border: none;
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 50px 0;
+  padding: 5px 10px;
+  text-decoration: none;
+
+  a {
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 20px;
+    color: white;
+    background-color: $primary-color;
+    text-decoration: none;
+  }
+}
+
+// Footer styles
+footer {
+  background-color: $primary-color;
+  color: white;
+  padding: $spacing-unit 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+// Order Info styles
+#order-info {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px; /* Add padding to all sides */
+}
+
+#order-info h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#order-info table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#order-info th,
+#order-info td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+#order-info th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+#order-info .btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#order-info .btn:hover {
+  background-color: #0056b3;
+}
+
+#order-info .form-control {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#order-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#order-info a:hover {
+  text-decoration: underline;
+}
