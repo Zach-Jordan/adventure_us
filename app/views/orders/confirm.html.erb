@@ -1,42 +1,49 @@
 <div id="order-info">
-<h1>Order Summary</h1>
+  <h1>Order Summary</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cart_products.each do |product| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= product.name %></td>
-        <td><%= number_to_currency(product.price) %></td>
-        <td><%= @cart_counts[product.id] %></td>
-        <td><%= number_to_currency(product.price * @cart_counts[product.id]) %></td>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
       </tr>
-    <% end %>
-    <tr>
-      <td colspan="3">Subtotal:</td>
-      <td><%= number_to_currency(@subtotal) %></td>
-    </tr>
-    <tr>
-      <td colspan="3">Tax (<%= number_to_percentage(@tax_rate * 100) %>):</td>
-      <td><%= number_to_currency(@tax_amount) %></td>
-    </tr>
-    <tr>
-      <td colspan="3"><strong>Total:</strong></td>
-      <td><strong><%= number_to_currency(@total) %></strong></td>
-    </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @cart_products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= number_to_currency(product.price) %></td>
+          <td><%= @cart_counts[product.id] %></td>
+          <td><%= number_to_currency(product.price * @cart_counts[product.id]) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="3">Subtotal:</td>
+        <td><%= number_to_currency(@subtotal) %></td>
+      </tr>
+      <tr>
+        <td colspan="3">Tax (<%= number_to_percentage(@tax_rate * 100) %>):</td>
+        <td><%= number_to_currency(@tax_amount) %></td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>Total:</strong></td>
+        <td><strong><%= number_to_currency(@total) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
 
-<%= form_with(model: @order, url: confirm_order_path(@order), method: :post) do |form| %>
-
-  <!-- Form fields -->
-  <%= form.submit "Confirm Order" %>
-<% end %>
+  <%= form_with(model: @order, url: process_payment_order_path(@order), method: :post) do |form| %>
+    <!-- Payment form fields -->
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key='pk_test_51P8uaqG3PBAJvQWNcKYp6ukaIcNWMBF0ilQPAuxKaxBrcYhZ2lFu1TexYDRRsEhLVpAa9eSvLutmn9dh5sN75H0f003yHqKMYk'"
+      data-amount="<%= (@total * 100).to_i %>"
+      data-name="Your Company Name"
+      data-description="Payment for Order"
+      data-locale="auto"
+      data-currency="cad">
+    </script>
+  <% end %>
 </div>

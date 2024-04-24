@@ -23,9 +23,13 @@ Rails.application.routes.draw do
     member do
       get 'confirm'
       post 'confirm'
+      post 'process_payment'
+      get 'process_payment'
       get 'thank_you'
     end
   end
+
+
 
   resources :users do
   resources :orders, only: [:index]

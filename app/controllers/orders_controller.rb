@@ -23,37 +23,86 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-  if request.post?
-    @order = Order.find(params[:id])
-    @cart_products = get_cart_products
-    @cart_counts = get_cart_counts
-    @subtotal = calculate_subtotal
-    @tax_rate = calculate_tax_rate(@order.province)
-    @tax_amount = @subtotal * @tax_rate
-    @total = @subtotal + @tax_amount
+    if request.post?
+      # Handle POST request to confirm order
+      @order = Order.find(params[:id])
+      @cart_products = get_cart_products
+      @cart_counts = get_cart_counts
+      @subtotal = calculate_subtotal
+      @tax_rate = calculate_tax_rate(@order.province)
+      @tax_amount = @subtotal * @tax_rate
+      @total = @subtotal + @tax_amount
 
-    # Update order attributes
-    @order.subtotal = @subtotal
-    @order.tax_amount = @tax_amount
-    @order.total = @total
+      # Update order attributes
+      @order.subtotal = @subtotal
+      @order.tax_amount = @tax_amount
+      @order.total = @total
 
-    # Save the order
-    if @order.save
-
-      redirect_to thank_you_order_path
+      # Save the order
+      if @order.save
+        redirect_to thank_you_order_path
+      else
+        # Handle error if order fails to save
+        render :confirm
+      end
     else
-      # Handle error if order fails to save
-      render :confirm
+      # Handle GET request to show confirmation page
+      @order = Order.find(params[:id])
+      @cart_products = get_cart_products
+      @cart_counts = get_cart_counts
+      @subtotal = calculate_subtotal
+      @tax_rate = calculate_tax_rate(@order.province)
+      @tax_amount = @subtotal * @tax_rate
+      @total = @subtotal + @tax_amount
     end
-  else
-    # Handle GET request to show confirmation page
-    @order = Order.find(params[:id])
-    @cart_products = get_cart_products
-    @cart_counts = get_cart_counts
-    @subtotal = calculate_subtotal
-    @tax_rate = calculate_tax_rate(@order.province)
-    @tax_amount = @subtotal * @tax_rate
-    @total = @subtotal + @tax_amount
+  end
+
+ def process_payment
+  @order = Order.find(params[:id])
+  Stripe.api_key = 'sk_test_51P8uaqG3PBAJvQWNSHMuLXTUVDCka6wm2orJCzFw6Q2W5uEI3MLa3jqtWOlkZaE31BxGGokVQ5JrbWw9hmjfzhHt00xW2aUw54'
+
+      @order = Order.find(params[:id])
+  @cart_products = get_cart_products
+  @cart_counts = get_cart_counts
+  @subtotal = calculate_subtotal
+  @tax_rate = calculate_tax_rate(@order.province)
+  @tax_amount = @subtotal * @tax_rate
+  @total = @subtotal + @tax_amount
+  @order.total = @total
+
+  begin
+    charge = Stripe::Charge.create(
+      amount: (@order.total * 100).to_i,
+      currency: 'cad',
+      source: params[:stripeToken],
+      description: 'Payment for Order'
+    )
+
+    # Create order only if payment is successful
+    if charge.paid
+      # Update order attributes
+      @order.subtotal = @subtotal
+      @order.tax_amount = @tax_amount
+      @order.total = @total
+
+      # Save the order
+      if @order.save
+        session[:cart] = [] # Clear the cart after successful order placement
+        redirect_to thank_you_order_path
+      else
+        # Handle error if order fails to save
+        render :confirm
+      end
+    else
+      # Handle case where payment is not successful
+      # You might want to redirect the user back to the payment page or handle it in another way
+      flash[:error] = "Payment was not successful. Please try again."
+      redirect_to confirm_order_path(@order)
+    end
+  rescue Stripe::CardError => e
+    # Handle Stripe errors, such as card declines
+    flash[:error] = e.message
+    redirect_to confirm_order_path(@order)
   end
 end
 

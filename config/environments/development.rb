@@ -73,4 +73,6 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  config.stripe_secret_key = 'sk_test_51P8uaqG3PBAJvQWNSHMuLXTUVDCka6wm2orJCzFw6Q2W5uEI3MLa3jqtWOlkZaE31BxGGokVQ5JrbWw9hmjfzhHt00xW2aUw54'
 end

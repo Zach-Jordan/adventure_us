@@ -7,7 +7,7 @@ gem 'devise'
 gem 'sassc'
 gem 'faker'
 gem 'kaminari'
-
+gem 'stripe'
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
