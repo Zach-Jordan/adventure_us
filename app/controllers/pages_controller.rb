@@ -1,15 +1,25 @@
 class PagesController < ApplicationController
   def index
-    @categories = Category.all
-    @products = Product.page(params[:page]).per(30)
-    if params[:search].present?
-      @products = @products.where("name LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
-    end
-    respond_to do |format|
-      format.html { render :index }
-      format.js # This will render index.js.erb
-    end
+  @categories = Category.all
+  @products = Product.page(params[:page]).per(30)
+
+  # Apply category filter if a category is selected
+  if params[:category_id].present?
+    @products = @products.joins(:categories).where(categories: { id: params[:category_id] })
   end
+
+  # Apply search filter
+  if params[:search].present?
+    @products = @products.where("products.name LIKE ? OR products.description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+  end
+
+  respond_to do |format|
+    format.html { render :index }
+    format.js
+  end
+end
+
+
 
   def about
     @about_page = AboutPage.first
