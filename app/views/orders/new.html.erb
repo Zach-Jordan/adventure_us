@@ -1,27 +1,27 @@
 <div id="order-info">
-<h1>Checkout</h1>
-
-<%= form_with(model: @order, url: orders_path) do |form| %>
-  <%= form.label :address, "Shipping Address" %>
-  <%= form.text_field :address %>
-
-  <%= form.label :province, "Province" %>
-<%= form.select :province, [
-  ["Alberta", "Alberta"],
-  ["British Columbia", "British Columbia"],
-  ["Manitoba", "Manitoba"],
-  ["New Brunswick", "New Brunswick"],
-  ["Newfoundland and Labrador", "Newfoundland and Labrador"],
-  ["Nova Scotia", "Nova Scotia"],
-  ["Ontario", "Ontario"],
-  ["Prince Edward Island", "Prince Edward Island"],
-  ["Quebec", "Quebec"],
-  ["Saskatchewan", "Saskatchewan"],
-  ["Northwest Territories", "Northwest Territories"],
-  ["Nunavut", "Nunavut"],
-  ["Yukon", "Yukon"],
-  ["Other", "Other"]
-] %>
-  <%= form.submit "Continue" %>
-<% end %>
+  <h1>Checkout</h1>
+  <%= form_with(model: @order, url: orders_path) do |form| %>
+    <%= form.label :address, "Shipping Address" %>
+    <%= form.text_field :address %>
+    <%= form.label :postal_code, "Postal Code" %>
+    <%= form.text_field :postal_code %>
+    <%= form.label :province, "Province" %>
+    <%= form.select :province, [
+      ["Alberta", "Alberta"],
+      ["British Columbia", "British Columbia"],
+      ["Manitoba", "Manitoba"],
+      ["New Brunswick", "New Brunswick"],
+      ["Newfoundland and Labrador", "Newfoundland and Labrador"],
+      ["Nova Scotia", "Nova Scotia"],
+      ["Ontario", "Ontario"],
+      ["Prince Edward Island", "Prince Edward Island"],
+      ["Quebec", "Quebec"],
+      ["Saskatchewan", "Saskatchewan"],
+      ["Northwest Territories", "Northwest Territories"],
+      ["Nunavut", "Nunavut"],
+      ["Yukon", "Yukon"],
+      ["Other", "Other"]
+    ] %>
+    <%= form.submit "Continue", class: "continueButton" %>
+  <% end %>
 </div>

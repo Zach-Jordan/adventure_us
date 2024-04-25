@@ -18,6 +18,15 @@ body {
   margin: 0 auto;
 }
 
+button {
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 20px;
+  color: white;
+  background-color: $primary-color;
+  border: none;
+}
+
 h1 {
   text-align: center;
 }
@@ -101,23 +110,23 @@ header {
 
 // Search form styles
 .search-form {
-  text-align: center; // Center align the form elements
-  margin-bottom: 20px; // Add some margin below the form
+  text-align: center;
+  margin-bottom: 20px;
 
   select,
   input[type="text"],
   input[type="submit"] {
-    margin: 5px; // Add some margin to each form element
+    margin: 5px;
     padding: 10px 15px;
-    border-radius: 20px; // Apply border-radius to make them round
-    border: 1px solid $primary-color; // Add a border to each form element
-    font-size: 16px; // Set the font size
+    border-radius: 20px;
+    border: 1px solid $primary-color;
+    font-size: 16px;
   }
 
   input[type="submit"] {
-    background-color: $primary-color; // Set background color for the submit button
-    color: white; // Set text color for the submit button
-    cursor: pointer; // Set cursor to pointer for the submit button
+    background-color: $primary-color;
+    color: white;
+    cursor: pointer;
   }
 }
 
@@ -181,15 +190,6 @@ header {
   }
 }
 
-// Footer styles
-footer {
-  background-color: $primary-color;
-  color: white;
-  padding: $spacing-unit 0;
-  text-align: center;
-  margin-top: auto;
-}
-
 // Order Info styles
 #order-info {
   max-width: 1200px;
@@ -243,10 +243,84 @@ footer {
 }
 
 #order-info a {
-  color: #007bff;
+  color: #ffffff;
   text-decoration: none;
 }
 
-#order-info a:hover {
-  text-decoration: underline;
+// Cart specific styles
+
+.removeButton {
+  background-color: rgb(178, 104, 104);
+}
+
+.removeButton:hover {
+  background-color: rgba(178, 104, 104, 0.403);
+}
+
+.proceedButton {
+  background-color: rgb(104, 178, 113);
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 20px;
+  color: white;
+  border: none;
+  text-decoration: none;
+}
+
+.proceedButton:hover {
+  background-color: rgba(104, 178, 113, 0.404);
+}
+
+#order-info form input[type="submit"].continueButton {
+  background-color: rgb(104, 178, 113);
+  font-size: $font-size-base;
+}
+
+#order-info form input[type="submit"].continueButton:hover {
+  background-color: rgba(104, 178, 113, 0.404);
+}
+
+#order-info form input[type="submit"] {
+  color: white;
+  background-color: rgb(116, 141, 188);
+  border: none;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+#order-info form input[type="submit"]:hover {
+  background-color: rgba(116, 141, 188, 0.377);
+}
+
+#order-info form {
+  display: flex;
+  flex-direction: column;
+
+  input[type="text"],
+  select {
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid $primary-color;
+    font-size: 16px;
+  }
+}
+
+#order-info input[type="text"],
+select {
+  margin: 5px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid $primary-color;
+  font-size: 16px;
+}
+
+// Footer styles
+footer {
+  background-color: $primary-color;
+  color: white;
+  padding: $spacing-unit 0;
+  text-align: center;
+  margin-top: auto;
 }
