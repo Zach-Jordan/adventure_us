@@ -48,9 +48,9 @@ end
 
   def add_to_cart
     product = Product.find(params[:product_id])
-    session[:cart] ||= []  # Initialize cart in session if it doesn't exist
-    session[:cart] << product.id  # Add product to cart
-    redirect_to root_path, notice: "Product added to cart"
+    session[:cart] ||= []
+    session[:cart] << product.id
+    redirect_back fallback_location: root_path, notice: "Product added to cart"
   end
 
   def update_cart

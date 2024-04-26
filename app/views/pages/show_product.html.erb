@@ -1,10 +1,9 @@
-<% if @product %>
-  <h1><%= @product.name %></h1>
+<div>
+  <h2><%= @product.name %></h2>
   <p><%= @product.description %></p>
   <p>Price: <%= number_to_currency(@product.price) %></p>
   <% if @product.image.attached? %>
     <%= image_tag rails_blob_path(@product.image, only_path: true), height: '100' %>
   <% end %>
-<% else %>
-  <p>Product not found</p>
-<% end %>
+  <%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), method: :post %>
+</div>
