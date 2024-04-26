@@ -1,9 +1,13 @@
-<div>
-  <h2><%= @product.name %></h2>
-  <p><%= @product.description %></p>
-  <p>Price: <%= number_to_currency(@product.price) %></p>
-  <% if @product.image.attached? %>
-    <%= image_tag rails_blob_path(@product.image, only_path: true), height: '100' %>
-  <% end %>
-  <%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), method: :post %>
+<div class="product-details">
+  <div class="product-image">
+    <% if @product.image.attached? %>
+      <%= image_tag rails_blob_path(@product.image, only_path: true), height: '200' %>
+    <% end %>
+  </div>
+  <div class="product-info">
+    <h2><%= @product.name %></h2>
+    <p><%= @product.description %></p>
+    <p>Price: <%= number_to_currency(@product.price) %></p>
+    <%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), method: :post %>
+  </div>
 </div>
