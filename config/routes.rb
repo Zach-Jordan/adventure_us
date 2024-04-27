@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :orders, only: [:new, :create] do
+   get 'orders/shipping', to: 'orders#shipping', as: 'new_order'
+
+  resources :orders, only: [:shipping, :create] do
     member do
       get 'confirm'
       post 'confirm'
