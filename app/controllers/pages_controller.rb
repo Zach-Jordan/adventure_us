@@ -3,12 +3,10 @@ class PagesController < ApplicationController
   @categories = Category.all
   @products = Product.page(params[:page]).per(30)
 
-  # Apply category filter if a category is selected
   if params[:category_id].present?
     @products = @products.joins(:categories).where(categories: { id: params[:category_id] })
   end
 
-  # Apply search filter
   if params[:search].present?
     @products = @products.where("products.name LIKE ? OR products.description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
   end
@@ -18,8 +16,6 @@ class PagesController < ApplicationController
     format.js
   end
 end
-
-
 
   def about
     @about_page = AboutPage.first
@@ -60,17 +56,15 @@ end
   session[:cart] ||= []
 
   if new_quantity > 0
-    session[:cart].delete(product_id)  # Remove any existing entry for this product
-    new_quantity.times { session[:cart] << product_id }  # Add the product to the session with the new quantity
+    session[:cart].delete(product_id)
+    new_quantity.times { session[:cart] << product_id }
   else
-    session[:cart].delete(product_id)  # Remove the product from the session if the quantity is 0
+    session[:cart].delete(product_id)
   end
 
   redirect_to cart_path
 end
 
-
-  # Action to remove an item from the cart
   def remove_from_cart
     product_id = params[:product_id].to_i
     session[:cart].delete(product_id)
