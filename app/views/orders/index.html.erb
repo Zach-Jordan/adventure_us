@@ -1,37 +1,40 @@
 <div id="order-info">
   <h1>My Orders</h1>
 
-
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Products</th>
-        <th>Taxes</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
-        <% if order.total > 1 %>
-          <tr>
-            <td><%= order.created_at.to_date %></td>
-            <td>
-              <ul>
-                <% product_quantities = Hash.new(0) %>
-                <% order.products.each do |product| %>
-                  <% product_quantities[product.name] += 1 %>
-                <% end %>
-                <% product_quantities.each do |product_name, quantity| %>
-                  <li><%= "#{product_name} (x#{quantity})" %></li>
-                <% end %>
-              </ul>
-            </td>
-            <td><%= number_to_currency(order.tax_amount) %></td>
-            <td><%= number_to_currency(order.total) %></td>
-          </tr>
+  <% if @orders.empty? %>
+    <p>You have no orders.</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Products</th>
+          <th>Taxes</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <% if order.total > 1 %>
+            <tr>
+              <td><%= order.created_at.to_date %></td>
+              <td>
+                <ul>
+                  <% product_quantities = Hash.new(0) %>
+                  <% order.products.each do |product| %>
+                    <% product_quantities[product.name] += 1 %>
+                  <% end %>
+                  <% product_quantities.each do |product_name, quantity| %>
+                    <li><%= "#{product_name} (x#{quantity})" %></li>
+                  <% end %>
+                </ul>
+              </td>
+              <td><%= number_to_currency(order.tax_amount) %></td>
+              <td><%= number_to_currency(order.total) %></td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  <% end %>
 </div>

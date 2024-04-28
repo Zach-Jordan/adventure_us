@@ -1,35 +1,39 @@
 <div id="order-info">
-<h1>Shopping Cart</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Total</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cart_products.group_by(&:id).each do |product_id, products| %>
-      <% product = products.first %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= number_to_currency(product.price) %></td>
-        <td class="cart-update">
-          <%= form_tag update_cart_path, method: :post do %>
-            <%= hidden_field_tag 'product_id', product_id %>
-            <%= text_field_tag 'quantity', products.size, min: 1 %>
-            <%= submit_tag 'Update' %>
-          <% end %>
-        </td>
-        <td><%= number_to_currency(product.price * products.size) %></td>
-        <td>
-          <%= button_to 'Remove', remove_from_cart_path(product_id: product_id), method: :post, class: "removeButton" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to "Proceed to Shipping", new_order_path, class: "proceedButton" %>
+  <h1>Shopping Cart</h1>
+  <% if @cart_products.empty? %>
+    <p>You have no items in your cart.</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_products.group_by(&:id).each do |product_id, products| %>
+          <% product = products.first %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= number_to_currency(product.price) %></td>
+            <td class="cart-update">
+              <%= form_tag update_cart_path, method: :post do %>
+                <%= hidden_field_tag 'product_id', product_id %>
+                <%= text_field_tag 'quantity', products.size, min: 1 %>
+                <%= submit_tag 'Update' %>
+              <% end %>
+            </td>
+            <td><%= number_to_currency(product.price * products.size) %></td>
+            <td>
+              <%= button_to 'Remove', remove_from_cart_path(product_id: product_id), method: :post, class: "removeButton" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to "Proceed to Shipping", new_order_path, class: "proceedButton" %>
+  <% end %>
 </div>

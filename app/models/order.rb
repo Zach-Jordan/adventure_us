@@ -11,6 +11,7 @@ class Order < ApplicationRecord
   validates :subtotal, :tax_amount, :total, numericality: { greater_than_or_equal_to: 0 }
   validate :calculate_total_correctly
 
+
   private
 
   def calculate_total_correctly

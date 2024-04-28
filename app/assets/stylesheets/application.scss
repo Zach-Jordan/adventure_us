@@ -134,6 +134,11 @@ header {
     margin-bottom: 20px;
   }
 
+  .field-error {
+    color: red;
+    margin-top: 0;
+  }
+
   .form-control {
     padding: 10px;
     border-radius: 5px;
@@ -310,6 +315,10 @@ header {
   margin-bottom: 20px;
 }
 
+#order-info p {
+  text-align: center;
+}
+
 #order-info table {
   width: 100%;
   border-collapse: collapse;
@@ -318,7 +327,7 @@ header {
 
 #order-info th,
 #order-info td {
-  padding: 10px;
+  padding: 10px 20px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -354,6 +363,15 @@ header {
 #order-info a {
   color: #ffffff;
   text-decoration: none;
+}
+
+#order-info ul {
+  padding: 0;
+}
+
+#order-info li {
+  list-style: none;
+  padding: 0;
 }
 
 // Cart specific styles
@@ -464,6 +482,8 @@ select {
 .product-image img {
   width: 100%;
   height: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 .product-info h2,
@@ -472,7 +492,7 @@ select {
 }
 
 .product-info p {
-  margin-bottom: 10px;
+  margin-top: 40px;
 }
 
 .product-info button {
