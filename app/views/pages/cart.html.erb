@@ -16,7 +16,7 @@
       <tr>
         <td><%= product.name %></td>
         <td><%= number_to_currency(product.price) %></td>
-        <td>
+        <td class="cart-update">
           <%= form_tag update_cart_path, method: :post do %>
             <%= hidden_field_tag 'product_id', product_id %>
             <%= text_field_tag 'quantity', products.size, min: 1 %>

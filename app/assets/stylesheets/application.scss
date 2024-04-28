@@ -15,7 +15,8 @@ body {
 
 #container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 50px auto;
+  padding: 0 100px;
 }
 
 button {
@@ -38,6 +39,8 @@ header {
   padding: $spacing-unit 0;
   font-size: $font-size-base;
   font-weight: $font-weight;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
   .header-content {
     display: flex;
@@ -72,10 +75,16 @@ header {
     }
 
     .Logo {
-      font-size: 20px;
+      font-size: 25px;
+      padding-right: 30px;
 
       h1 {
         margin: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: $secondary-color;
       }
     }
 
@@ -125,20 +134,6 @@ header {
     margin-bottom: 20px;
   }
 
-  .btn {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #0056b3;
-    }
-  }
-
   .form-control {
     padding: 10px;
     border-radius: 5px;
@@ -174,7 +169,6 @@ header {
 
       p {
         margin: 0;
-        padding-right: 6px;
       }
     }
 
@@ -186,8 +180,8 @@ header {
     }
 
     input[type="submit"] {
-      color: $text-color;
-      background-color: #68b271;
+      color: $secondary-color;
+      background-color: #36533eb3;
       font-size: 16px;
       border: none;
       padding: 10px 15px;
@@ -195,7 +189,8 @@ header {
       border-radius: 20px;
 
       &:hover {
-        background-color: rgba(104, 178, 113, 0.404);
+        background-color: $primary-color;
+        cursor: pointer;
       }
     }
   }
@@ -214,14 +209,19 @@ header {
     margin: 5px;
     padding: 10px 15px;
     border-radius: 20px;
-    border: 1px solid $primary-color;
+    border: none;
     font-size: 16px;
   }
 
   input[type="submit"] {
-    background-color: $primary-color;
-    color: white;
+    background-color: #36533eb3;
+    color: $secondary-color;
     cursor: pointer;
+
+    &:hover {
+      background-color: $primary-color;
+      cursor: pointer;
+    }
   }
 }
 
@@ -235,12 +235,14 @@ header {
 #products-list > div {
   width: 350px;
   height: 350px;
-  margin: 10px;
+  margin: 20px;
   background-color: $secondary-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 #products-list h2 {
@@ -260,9 +262,15 @@ header {
   padding: 10px 15px;
   margin: 10px;
   border-radius: 20px;
-  color: white;
-  background-color: $primary-color;
   border: none;
+  background-color: #36533eb3;
+  color: $secondary-color;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary-color;
+    cursor: pointer;
+  }
 }
 
 /* Pagination styles */
@@ -280,8 +288,13 @@ header {
     margin: 10px;
     border-radius: 20px;
     color: white;
-    background-color: $primary-color;
+    background-color: #36533eb3;
     text-decoration: none;
+
+    &:hover {
+      background-color: $primary-color;
+      cursor: pointer;
+    }
   }
 }
 
@@ -289,7 +302,7 @@ header {
 #order-info {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px; /* Add padding to all sides */
+  padding: 20px;
 }
 
 #order-info h1 {
@@ -316,16 +329,17 @@ header {
 
 #order-info .btn {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #36533eb3;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
 
-#order-info .btn:hover {
-  background-color: #0056b3;
+  &:hover {
+    background-color: $primary-color;
+    cursor: pointer;
+  }
 }
 
 #order-info .form-control {
@@ -353,39 +367,37 @@ header {
 }
 
 .proceedButton {
-  background-color: rgb(104, 178, 113);
+  background-color: #36533eb3;
   padding: 10px 15px;
   margin: 10px;
   border-radius: 20px;
   color: white;
   border: none;
   text-decoration: none;
-}
 
-.proceedButton:hover {
-  background-color: rgba(104, 178, 113, 0.404);
+  &:hover {
+    background-color: $primary-color;
+    cursor: pointer;
+  }
 }
 
 #order-info form input[type="submit"].continueButton {
-  background-color: rgb(104, 178, 113);
+  background-color: #36533eb3;
   font-size: $font-size-base;
-}
-
-#order-info form input[type="submit"].continueButton:hover {
-  background-color: rgba(104, 178, 113, 0.404);
 }
 
 #order-info form input[type="submit"] {
   color: white;
-  background-color: rgb(116, 141, 188);
+  background-color: #829ea8;
   border: none;
   padding: 10px 15px;
   margin: 10px;
   border-radius: 20px;
-}
 
-#order-info form input[type="submit"]:hover {
-  background-color: rgba(116, 141, 188, 0.377);
+  &:hover {
+    background-color: #6c8c99;
+    cursor: pointer;
+  }
 }
 
 #order-info form {
@@ -409,6 +421,25 @@ select {
   border-radius: 20px;
   border: 1px solid $primary-color;
   font-size: 16px;
+}
+
+#order-info .cart-update {
+  width: auto;
+
+  form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input[type="text"] {
+    width: auto;
+    border: none;
+    height: 15px;
+    padding: 10px 15px;
+    text-align: center;
+  }
 }
 
 // Product Show
@@ -447,14 +478,15 @@ select {
 .product-info button {
   padding: 10px 15px;
   border-radius: 20px;
-  background-color: #007bff;
-  color: white;
   border: none;
+  background-color: #36533eb3;
+  color: $secondary-color;
   cursor: pointer;
-}
 
-.product-info button:hover {
-  background-color: #0056b3;
+  &:hover {
+    background-color: $primary-color;
+    cursor: pointer;
+  }
 }
 
 // Footer styles

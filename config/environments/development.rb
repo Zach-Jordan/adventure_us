@@ -75,4 +75,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.stripe_secret_key = 'sk_test_51P8uaqG3PBAJvQWNSHMuLXTUVDCka6wm2orJCzFw6Q2W5uEI3MLa3jqtWOlkZaE31BxGGokVQ5JrbWw9hmjfzhHt00xW2aUw54'
+
+  config.secret_key_base = '82cc72736205b61d06b61a5c2269d8b0cbc185d47a335c477eeaef73b545b54c1247b0e2d1db4a537411bc6728abf542736eb9eb48bbb4d483a7d17c7939c0f7'
 end
