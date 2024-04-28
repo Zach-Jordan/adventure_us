@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# AdeventureUs
 
-Things you may want to cover:
+This is an ecommerce website for Adventure Us, an outdoors supply website.
 
-* Ruby version
+# To Start
 
-* System dependencies
+- run:
+- git clone https://github.com/Zach-Jordan/adventure_us.git
+- rails db:migrate
 
-* Configuration
+- db/seeds.rb, uncomment the seed data
+- run:
+- rails db:seed
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+and you are all set to create you own products and users using the website
